@@ -35,3 +35,4 @@ Use Case 3: Reverse String Based Palindrome Check
         System.out.println(str + " is a palindrome");
     }
 }
+
