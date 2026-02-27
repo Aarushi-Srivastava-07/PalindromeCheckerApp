@@ -1,39 +1,52 @@
+import java.util.Scanner;
 public class PalindromeCheckerApp {
-    //        / *
-    //
-    //*
-    //
-    //* MAIN CLASS - UseCase1PalindromeApp
-    //
-    //        * Use Case 1: Application Entry & Welcome Message
-    //
-    //* Description:
-    //* This class represents the entry point of the
-    //* Palindrome Checker Management System.
-    //
-    //* At this stage, the application:
-    //* - Starts execution from the main() method
-    //                * - Displays a welcome message
-    //                * - Shows application version
-    //
-    //* No palindrome logic is implemented yet.
-    //
-    //* The goal is to establish a clear startup flow.
-    //                *
-    //
-    //                * @author Developer
-    //                * @version 1.0
-    //                */
-    //
-    //        public class UseCase1PalindromeCheckerApp {
-    //        * Application entry point.
-    //        * This is the first method executed by the JVM
-    //        * when the program starts.
-    //        * @param args Command-line arguments
-    //*/
+//    / *
+//            *
+//            * MAIN CLASS - UseCase2PalindromeCheckerApp
+//
+//*
+//        * Use Case 2: Hardcoded Palindrome Validation
+//
+//* Description:
+//            * This class demonstrates basic palindrome validation
+//* using a hardcoded string value.
+//*
+//        * At this stage, the application:
+//            * - Stores a predefined string
+//* - Compares characters from both ends
+//* - Determines whether the string is a palindrome
+//* - Displays the result on the console
+//*
+//        * This use case introduces fundamental comparison logic
+//* before using advanced data structures.
+//*
+//
+//        * @author Developer
+//* @version 2.0
+//            */
+//    oublic class UseCase2PalindromeCheckerApp {
+/// **
+//        * Application entry point for UC2.
+//*
+//
+//        * @param args Command-line arguments
+//*/
     public static void main(String[] args){
-        System.out.println("Welcome to the Palindrome Checker Management System");
-        System.out.println("Version : 1.0");
-        System.out.println("System initialized successfully.");
+        Scanner input = new Scanner(System.in);
+        System.out.print("Input text: ");
+        String str = input.next();
+        Boolean check = true;
+        for(int i = 0; i < str.length() / 2; i++){
+            if(str.charAt(i) != str.charAt(str.length()-i-1)){
+                check = false;
+                break;
+            }
+        }
+        if(check){
+            System.out.println(str + " is a palindrome");
+        } else{
+            System.out.println(str + " is not a palindrome");
+        }
+
     }
 }
