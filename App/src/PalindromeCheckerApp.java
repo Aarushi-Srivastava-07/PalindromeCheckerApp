@@ -2,55 +2,51 @@ import java.util.*;
 public class PalindromeCheckerApp {
 // / **
 
+// * MAIN CLASS - UseCase10PalindromeCheckerApp
 // *
 
-// * MAIN CLASS - UseCase5PalindromeCheckerApp
-
-// * Use Case 5: Stack Based Palindrome Checker
+// * Use Case 10: Normalized Palindrome Validation
 
 // * Description:
-// * This class validates a palindrome using a Stack
-// * data structure which follows the LIFO principle.
+// * This class validates a palindrome after preprocessing
+// * the input string.
 
-// * At this stage, the application:
-// * - Pushes characters into a stack
-// * - Pops them in reverse order
-// * - Compares with original sequence
-// * - Displays the result
-
-// * This maps stack behavior to reversal logic.
-
-// * @author Developer
-// * @version 5.0
-// */
-
-// public class UseCase5PalindromeCheckerApp {
-
-// * Application entry point for UC5.
+// * Normalization includes:
+// * - Removing spaces and symbols
+// * - Converting to lowercase
 // *
-// * @param args Command-line arguments
-// */
-// public static void main(String[] args)
+// * This ensures the palindrome check is logical rather
+// * than character-format dependent.
+// *
+// * Example:
+// * "A man a plan a canal Panama"
 
-// k ... }
+// * Bauthor Developer
+// * @version 10.0
+// */
+// public class UseCase10PalindromeCheckerApp {
+
+// / **
+// * Application entry point for UC10.
+// *
+// * Bparam args Command-line arguments
+// */
+// public static void main(String[] args) { ... }
+
+// *
     public static void main(String[] args){
-        String input = "noon";
-        Stack<Character> stack = new Stack<>();
-        for (char c : input.toCharArray()) {
-            stack.push(c);
-        }
+        String input = "Madam In Eden Im Adam";
+        String normalized = input.replaceAll("\\s+", "").toLowerCase();
         boolean isPalindrome = true;
-        for (char c : input.toCharArray()) {
-            if (c != stack.pop()) {
-                isPalindrome = false;   
-                break;                   
+        for (int i = 0; i < normalized.length() / 2; i++) {
+            if (normalized.charAt(i) != normalized.charAt(normalized.length() - 1 - i)) {
+                isPalindrome = false;
+                break;
             }
         }
-        if (isPalindrome) {
-            System.out.println("\"" + input + "\" is a palindrome.");
-        } else {
-            System.out.println("\"" + input + "\" is NOT a palindrome.");
-        }
+        System.out.println("Input: " + input);
+        System.out.println("Normalized: " + normalized);
+        System.out.println("Is Palindrome? " + isPalindrome);
     }
 }
 
