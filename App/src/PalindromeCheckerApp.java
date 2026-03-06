@@ -2,55 +2,65 @@ import java.util.*;
 public class PalindromeCheckerApp {
 // / **
 
-// *
+// * MAIN CLASS - UseCase11PalindroneCheckerApp
 
-// * MAIN CLASS - UseCase5PalindromeCheckerApp
-
-// * Use Case 5: Stack Based Palindrome Checker
+// * Use Case 11: Object-Oriented Patindrome Service
 
 // * Description:
-// * This class validates a palindrome using a Stack
-// * data structure which follows the LIFO principle.
+// * This class demonstrates palindrome validation using
+// * object-oriented design.
 
-// * At this stage, the application:
-// * - Pushes characters into a stack
-// * - Pops them in reverse order
-// * - Compares with original sequence
-// * - Displays the result
+// * The patindrome Logic is encapsutated inside a
+// * PalindromeService class.
 
-// * This maps stack behavior to reversal logic.
+// * This improves:
 
-// * @author Developer
-// * @version 5.0
+// * - Reusobitity
+// * - Readability
+// * - Separation of concerns
+
+// * Douthor Developer
+// * Oversion 11.0
+// +/
+// public class UseCasellPalindromeCheckerApp {
+
+// / **
+// * Application entry point for UC11.
+
+// * Øparan args Command-Line anguments
 // */
+// pubtic static void main(String[] args) { ... }
 
-// public class UseCase5PalindromeCheckerApp {
-
-// * Application entry point for UC5.
-// *
-// * @param args Command-line arguments
+// / **
+// * Service class that contains patindrome Logic.
 // */
-// public static void main(String[] args)
+// class PatindroneService { 2 uages
 
-// k ... }
-    public static void main(String[] args){
-        String input = "noon";
-        Stack<Character> stack = new Stack<>();
-        for (char c : input.toCharArray()) {
-            stack.push(c);
-        }
-        boolean isPalindrome = true;
-        for (char c : input.toCharArray()) {
-            if (c != stack.pop()) {
-                isPalindrome = false;   
-                break;                   
+// * Checks whether the input string is a palindrome.
+
+// * Mpara input Input string
+// * Øreturn true if patindrone, fatse otherwise
+// */
+    public boolean checkPalindrome(String input) {
+        int start = 0;
+        int end = input.length() - 1;
+
+        while (start < end) {
+            if (input.charAt(start) != input.charAt(end)) {
+                return false;
             }
+            start++;
+            end--;
         }
-        if (isPalindrome) {
-            System.out.println("\"" + input + "\" is a palindrome.");
-        } else {
-            System.out.println("\"" + input + "\" is NOT a palindrome.");
-        }
+        return true;
+    }
+    public static void main(String[] args){
+        PalindromeCheckerApp checker = new PalindromeCheckerApp();
+        String input = "radar";
+
+        System.out.println("Input: " + input);
+        System.out.println("Is Palindrome? " + checker.checkPalindrome(input));
+
     }
 }
 
