@@ -4,53 +4,104 @@ public class PalindromeCheckerApp {
 
 // *
 
-// * MAIN CLASS - UseCase5PalindromeCheckerApp
+// * MAIN CLASS - UseCase8PalindromeCheckerApp
 
-// * Use Case 5: Stack Based Palindrome Checker
+// *
+
+// * Use Case 8: Linked List Based Palindrome Checker
+// *
 
 // * Description:
-// * This class validates a palindrome using a Stack
-// * data structure which follows the LIFO principle.
+// * This class checks whether a string is a palindrome
+// * using a LinkedList.
+// *
 
-// * At this stage, the application:
-// * - Pushes characters into a stack
-// * - Pops them in reverse order
-// * - Compares with original sequence
-// * - Displays the result
+// * Characters are added to the list and then compared
+// * by removing elements from both ends:
+// *
 
-// * This maps stack behavior to reversal logic.
+// * - removeFirst()
+// * - removeLast()
+// *
+
+// * This demonstrates how LinkedList supports
+// * double-ended operations for symmetric validation.
 
 // * @author Developer
-// * @version 5.0
+// * @version 8.0
 // */
+// public class UseCase8PalindromeCheckerApp {
 
-// public class UseCase5PalindromeCheckerApp {
+// / **
+// * Application entry point for UC8.
 
-// * Application entry point for UC5.
-// *
 // * @param args Command-line arguments
 // */
 // public static void main(String[] args)
 
-// k ... }
-    public static void main(String[] args){
-        String input = "noon";
-        Stack<Character> stack = new Stack<>();
-        for (char c : input.toCharArray()) {
-            stack.push(c);
+// *
+
+// *
+
+// }
+    static class Node {
+        char data;
+        Node next;
+        Node(char data) {
+            this.data = data;
+            this.next = null;
         }
-        boolean isPalindrome = true;
+    }
+
+    static boolean checkPalindrome(Node head) {
+        if (head == null || head.next == null) return true;
+
+        Node slow = head, fast = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        Node secondHalf = reverse(slow);
+        Node firstHalf = head;
+
+        while (secondHalf != null) {
+            if (firstHalf.data != secondHalf.data) return false;
+            firstHalf = firstHalf.next;
+            secondHalf = secondHalf.next;
+        }
+        return true;
+    }
+
+    static Node reverse(Node head) {
+        Node prev = null, curr = head;
+        while (curr != null) {
+            Node next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        return prev;
+    }
+
+    public static void main(String[] args){
+        String input = "level";
+
+        Node head = null, tail = null;
         for (char c : input.toCharArray()) {
-            if (c != stack.pop()) {
-                isPalindrome = false;   
-                break;                   
+            Node newNode = new Node(c);
+            if (head == null) {
+                head = newNode;
+                tail = newNode;
+            } else {
+                tail.next = newNode;
+                tail = newNode;
             }
         }
-        if (isPalindrome) {
-            System.out.println("\"" + input + "\" is a palindrome.");
-        } else {
-            System.out.println("\"" + input + "\" is NOT a palindrome.");
-        }
+
+        boolean isPalindrome = checkPalindrome(head);
+        System.out.println("Input: " + input);
+        System.out.println("Is Palindrome? " + isPalindrome);
     }
 }
 
