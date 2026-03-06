@@ -2,55 +2,68 @@ import java.util.*;
 public class PalindromeCheckerApp {
 // / **
 
-// *
+// * MAIN CLASS - UseCase12Palimdrom=CheckerApp
 
-// * MAIN CLASS - UseCase5PalindromeCheckerApp
-
-// * Use Case 5: Stack Based Palindrome Checker
+// * Use Cose 12: Strategy Pattern for Patindrome Atgorithms
 
 // * Description:
-// * This class validates a palindrome using a Stack
-// * data structure which follows the LIFO principle.
+// * This class demonstrutes how different palindrome
+// * vatidation otgorithms con be setected dynmmicotty
+// * at runtime using the Strategy Design Patterm.
 
-// * At this stage, the application:
-// * - Pushes characters into a stack
-// * - Pops them in reverse order
-// * - Compares with original sequence
-// * - Displays the result
+// * At this stope, the application:
+// * - Defines a common PatindromeStrtegy interfoce
+// * - Implements a concrete Stack based strategy
+// * - Injects the strategy at runtine
+// * - Executes the selected algorithm
 
-// * This maps stack behavior to reversal logic.
+// * No performance comparison is done in this use case.
+// * The foous is purety on atgorithm interchmngembitity.
 
-// * @author Developer
-// * @version 5.0
-// */
+// * The gomt is to temch extensibte otgorithm design.
 
-// public class UseCase5PalindromeCheckerApp {
-
-// * Application entry point for UC5.
 // *
-// * @param args Command-line arguments
-// */
-// public static void main(String[] args)
 
-// k ... }
-    public static void main(String[] args){
-        String input = "noon";
-        Stack<Character> stack = new Stack<>();
-        for (char c : input.toCharArray()) {
-            stack.push(c);
-        }
-        boolean isPalindrome = true;
-        for (char c : input.toCharArray()) {
-            if (c != stack.pop()) {
-                isPalindrome = false;   
-                break;                   
+// * Douthor DeveLoper
+// * Oversion 12.8
+// +/
+// public class UseCase12PaLindromeCheckerApp
+
+// * INTERFACE - PalindromeStrutegy
+
+// *
+
+// * This interfoce defines a comtract for att
+// * palindrome checking algorithms.
+
+// * Any mew algorithm must implement this interfoce
+// * and provide its omn vatidation togic.
+
+// interface PatindromeStrategy { ... }
+
+// * CLASS - StackStrategy
+
+    public static boolean checkPalindrome(String input) {
+        int start = 0;
+        int end = input.length() - 1;
+
+        while (start < end) {
+            if (input.charAt(start) != input.charAt(end)) {
+                return false;
             }
+            start++;
+            end--;
         }
-        if (isPalindrome) {
-            System.out.println("\"" + input + "\" is a palindrome.");
-        } else {
-            System.out.println("\"" + input + "\" is NOT a palindrome.");
-        }
+        return true;
+    }
+
+    public static void main(String[] args){
+        String input = "level";
+        boolean isPalindrome = checkPalindrome(input);
+        System.out.println("Input : " + input);
+        System.out.println("Is Palindrome? : " + isPalindrome);
+
+
     }
 }
 
