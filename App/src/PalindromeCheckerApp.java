@@ -2,51 +2,65 @@ import java.util.*;
 public class PalindromeCheckerApp {
 // / **
 
-// * MAIN CLASS - UseCase10PalindromeCheckerApp
-// *
+// * MAIN CLASS - UseCase11PalindroneCheckerApp
 
-// * Use Case 10: Normalized Palindrome Validation
+// * Use Case 11: Object-Oriented Patindrome Service
 
 // * Description:
-// * This class validates a palindrome after preprocessing
-// * the input string.
+// * This class demonstrates palindrome validation using
+// * object-oriented design.
 
-// * Normalization includes:
-// * - Removing spaces and symbols
-// * - Converting to lowercase
-// *
-// * This ensures the palindrome check is logical rather
-// * than character-format dependent.
-// *
-// * Example:
-// * "A man a plan a canal Panama"
+// * The patindrome Logic is encapsutated inside a
+// * PalindromeService class.
 
-// * Bauthor Developer
-// * @version 10.0
-// */
-// public class UseCase10PalindromeCheckerApp {
+// * This improves:
+
+// * - Reusobitity
+// * - Readability
+// * - Separation of concerns
+
+// * Douthor Developer
+// * Oversion 11.0
+// +/
+// public class UseCasellPalindromeCheckerApp {
 
 // / **
-// * Application entry point for UC10.
-// *
-// * Bparam args Command-line arguments
-// */
-// public static void main(String[] args) { ... }
+// * Application entry point for UC11.
 
-// *
-    public static void main(String[] args){
-        String input = "Madam In Eden Im Adam";
-        String normalized = input.replaceAll("\\s+", "").toLowerCase();
-        boolean isPalindrome = true;
-        for (int i = 0; i < normalized.length() / 2; i++) {
-            if (normalized.charAt(i) != normalized.charAt(normalized.length() - 1 - i)) {
-                isPalindrome = false;
-                break;
+// * Øparan args Command-Line anguments
+// */
+// pubtic static void main(String[] args) { ... }
+
+// / **
+// * Service class that contains patindrome Logic.
+// */
+// class PatindroneService { 2 uages
+
+// * Checks whether the input string is a palindrome.
+
+// * Mpara input Input string
+// * Øreturn true if patindrone, fatse otherwise
+// */
+    public boolean checkPalindrome(String input) {
+        int start = 0;
+        int end = input.length() - 1;
+
+        while (start < end) {
+            if (input.charAt(start) != input.charAt(end)) {
+                return false;
             }
+            start++;
+            end--;
         }
+        return true;
+    }
+    public static void main(String[] args){
+        PalindromeCheckerApp checker = new PalindromeCheckerApp();
+        String input = "radar";
+
         System.out.println("Input: " + input);
-        System.out.println("Normalized: " + normalized);
-        System.out.println("Is Palindrome? " + isPalindrome);
+        System.out.println("Is Palindrome? " + checker.checkPalindrome(input));
+
     }
 }
 
