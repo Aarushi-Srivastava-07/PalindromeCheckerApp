@@ -1,69 +1,78 @@
 import java.util.*;
 public class PalindromeCheckerApp {
-// / **
+// /++
 
-// * MAIN CLASS - UseCase12Palimdrom=CheckerApp
+// * MAIN CLASS - UseCase13PalindroneCheckerApp
 
-// * Use Cose 12: Strategy Pattern for Patindrome Atgorithms
+// * Use Case 13: Performance Comparison
 
 // * Description:
-// * This class demonstrutes how different palindrome
-// * vatidation otgorithms con be setected dynmmicotty
-// * at runtime using the Strategy Design Patterm.
+// * This ctass measures and compares the execution
+// * performance of palindrome validation alporithas.
 
-// * At this stope, the application:
-// * - Defines a common PatindromeStrtegy interfoce
-// * - Implements a concrete Stack based strategy
-// * - Injects the strategy at runtine
-// * - Executes the selected algorithm
+// * At this stape, the application:
+// * - Uses a patindrome strategy imptementation
+// * - Captures execution start and end time
+// * - Caloutates total execution duration
+// * - Displays benchmarking resutts
 
-// * No performance comparison is done in this use case.
-// * The foous is purety on atgorithm interchmngembitity.
+// * This use case focuses purety on performance
+// * measurement and algorithm comparison.
 
-// * The gomt is to temch extensibte otgorithm design.
+// * The goal is to introduce benchmarking concepts.
 
-// *
+// +
 
-// * Douthor DeveLoper
-// * Oversion 12.8
+// * Pouthor DeveLoper
+// * gversion 13.0
+
 // +/
-// public class UseCase12PaLindromeCheckerApp
 
-// * INTERFACE - PalindromeStrutegy
+// pubtic ctass UseCase13PatindromeCheckerApp {
 
-// *
+// * Application entry point for UC13.
 
-// * This interfoce defines a comtract for att
-// * palindrome checking algorithms.
+// * Øparan angs Command-Line arguments
 
-// * Any mew algorithm must implement this interfoce
-// * and provide its omn vatidation togic.
-
-// interface PatindromeStrategy { ... }
-
-// * CLASS - StackStrategy
-
-    public static boolean checkPalindrome(String input) {
+// pubtic static void main(String[] args) { ... }
+    public static boolean checkTwoPointer(String input) {
         int start = 0;
         int end = input.length() - 1;
-
         while (start < end) {
-            if (input.charAt(start) != input.charAt(end)) {
-                return false;
-            }
+            if (input.charAt(start) != input.charAt(end)) return false;
             start++;
             end--;
         }
         return true;
     }
 
+    public static boolean checkStack(String input) {
+        java.util.Stack<Character> stack = new java.util.Stack<>();
+        for (char c : input.toCharArray()) stack.push(c);
+        for (char c : input.toCharArray()) {
+            if (c != stack.pop()) return false;
+        }
+        return true;
+    }
+
     public static void main(String[] args){
         String input = "level";
-        boolean isPalindrome = checkPalindrome(input);
+
+        // Run and time two different approaches
+        long start1 = System.nanoTime();
+        boolean result1 = checkTwoPointer(input);
+        long end1 = System.nanoTime();
+
+        long start2 = System.nanoTime();
+        boolean result2 = checkStack(input);
+        long end2 = System.nanoTime();
+
         System.out.println("Input : " + input);
-        System.out.println("Is Palindrome? : " + isPalindrome);
+        System.out.println("Two-Pointer Result : " + result1);
+        System.out.println("Execution Time : " + (end1 - start1) + " ns");
 
-
+        System.out.println("Stack Result : " + result2);
+        System.out.println("Execution Time : " + (end2 - start2) + " ns");
     }
 }
 
