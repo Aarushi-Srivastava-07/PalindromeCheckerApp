@@ -1,66 +1,51 @@
 import java.util.*;
 public class PalindromeCheckerApp {
-// /*
 // / **
 
+// * MAIN CLASS - UseCase10PalindromeCheckerApp
 // *
 
-// * MAIN CLASS - UseCase9RecursivePalindrome
-// *
-
-// * Use Case 9: Recursive Palindrome Checker
+// * Use Case 10: Normalized Palindrome Validation
 
 // * Description:
-// * This class validates a palindrome using recursion.
+// * This class validates a palindrome after preprocessing
+// * the input string.
 
-// * Characters are compared from the outer positions
-// * moving inward using recursive calls.
-
-// * The recursion stops when:
-// * - All characters are matched, or
-// * - A mismatch is found.
+// * Normalization includes:
+// * - Removing spaces and symbols
+// * - Converting to lowercase
 // *
-// * This use case demonstrates divide-and-conquer
-// * logic using method recursion.
+// * This ensures the palindrome check is logical rather
+// * than character-format dependent.
+// *
+// * Example:
+// * "A man a plan a canal Panama"
 
 // * Bauthor Developer
-// * @version 9.0
+// * @version 10.0
 // */
-// public class UseCase9PalindromeCheckerApp {
+// public class UseCase10PalindromeCheckerApp {
 
 // / **
-// * Application entry point for UC9.
+// * Application entry point for UC10.
 // *
-// * @param args Command-line arguments
+// * Bparam args Command-line arguments
 // */
 // public static void main(String[] args) { ... }
 
-// / **
-// * Recursively checks whether a string is palindrome.
 // *
-
-// * @param s
-// * @param start Starting index
-// * @param end Ending index
-// * @return true if palindrome, otherwise false
-// */
-// private static boolean check(String s, int start, int end) { ... }
-
-// *
-
-// Input string
-// */
-    static boolean isPalindrome(String s, int start, int end) {
-        if (start >= end) return true; // base condition
-        if (s.charAt(start) != s.charAt(end)) return false;
-        return isPalindrome(s, start + 1, end - 1); // recursive call
-    }
-
     public static void main(String[] args){
-        String input = "madam";
-        boolean isPalindrome = isPalindrome(input, 0, input.length() - 1);
-
+        String input = "Madam In Eden Im Adam";
+        String normalized = input.replaceAll("\\s+", "").toLowerCase();
+        boolean isPalindrome = true;
+        for (int i = 0; i < normalized.length() / 2; i++) {
+            if (normalized.charAt(i) != normalized.charAt(normalized.length() - 1 - i)) {
+                isPalindrome = false;
+                break;
+            }
+        }
         System.out.println("Input: " + input);
+        System.out.println("Normalized: " + normalized);
         System.out.println("Is Palindrome? " + isPalindrome);
     }
 }
