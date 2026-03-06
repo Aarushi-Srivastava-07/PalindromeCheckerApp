@@ -1,56 +1,78 @@
 import java.util.*;
 public class PalindromeCheckerApp {
-// / **
+// /++
 
-// *
+// * MAIN CLASS - UseCase13PalindroneCheckerApp
 
-// * MAIN CLASS - UseCase5PalindromeCheckerApp
-
-// * Use Case 5: Stack Based Palindrome Checker
+// * Use Case 13: Performance Comparison
 
 // * Description:
-// * This class validates a palindrome using a Stack
-// * data structure which follows the LIFO principle.
+// * This ctass measures and compares the execution
+// * performance of palindrome validation alporithas.
 
-// * At this stage, the application:
-// * - Pushes characters into a stack
-// * - Pops them in reverse order
-// * - Compares with original sequence
-// * - Displays the result
+// * At this stape, the application:
+// * - Uses a patindrome strategy imptementation
+// * - Captures execution start and end time
+// * - Caloutates total execution duration
+// * - Displays benchmarking resutts
 
-// * This maps stack behavior to reversal logic.
+// * This use case focuses purety on performance
+// * measurement and algorithm comparison.
 
-// * @author Developer
-// * @version 5.0
-// */
+// * The goal is to introduce benchmarking concepts.
 
-// public class UseCase5PalindromeCheckerApp {
+// +
 
-// * Application entry point for UC5.
-// *
-// * @param args Command-line arguments
-// */
-// public static void main(String[] args)
+// * Pouthor DeveLoper
+// * gversion 13.0
 
-// k ... }
+// +/
+
+// pubtic ctass UseCase13PatindromeCheckerApp {
+
+// * Application entry point for UC13.
+
+// * Øparan angs Command-Line arguments
+
+// pubtic static void main(String[] args) { ... }
+    public static boolean checkTwoPointer(String input) {
+        int start = 0;
+        int end = input.length() - 1;
+        while (start < end) {
+            if (input.charAt(start) != input.charAt(end)) return false;
+            start++;
+            end--;
+        }
+        return true;
+    }
+
+    public static boolean checkStack(String input) {
+        java.util.Stack<Character> stack = new java.util.Stack<>();
+        for (char c : input.toCharArray()) stack.push(c);
+        for (char c : input.toCharArray()) {
+            if (c != stack.pop()) return false;
+        }
+        return true;
+    }
+
     public static void main(String[] args){
-        String input = "noon";
-        Stack<Character> stack = new Stack<>();
-        for (char c : input.toCharArray()) {
-            stack.push(c);
-        }
-        boolean isPalindrome = true;
-        for (char c : input.toCharArray()) {
-            if (c != stack.pop()) {
-                isPalindrome = false;   
-                break;                   
-            }
-        }
-        if (isPalindrome) {
-            System.out.println("\"" + input + "\" is a palindrome.");
-        } else {
-            System.out.println("\"" + input + "\" is NOT a palindrome.");
-        }
+        String input = "level";
+
+        // Run and time two different approaches
+        long start1 = System.nanoTime();
+        boolean result1 = checkTwoPointer(input);
+        long end1 = System.nanoTime();
+
+        long start2 = System.nanoTime();
+        boolean result2 = checkStack(input);
+        long end2 = System.nanoTime();
+
+        System.out.println("Input : " + input);
+        System.out.println("Two-Pointer Result : " + result1);
+        System.out.println("Execution Time : " + (end1 - start1) + " ns");
+
+        System.out.println("Stack Result : " + result2);
+        System.out.println("Execution Time : " + (end2 - start2) + " ns");
     }
 }
 
